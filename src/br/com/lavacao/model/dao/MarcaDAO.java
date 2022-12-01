@@ -1,6 +1,7 @@
 package br.com.lavacao.model.dao;
 
 import br.com.lavacao.model.domain.Marca;
+//import br.com.lavacao.model.domain.Modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +24,7 @@ public class MarcaDAO {
     }
 
     public boolean inserir(Marca marca) {
-        String sql = "INSERT INTO marca(nome) VALUES(?)";
+        String sql = "INSERT INTO marca(descricao) VALUES(?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, marca.getNome());
@@ -61,6 +62,23 @@ public class MarcaDAO {
             return false;
         }
     }
+//     public List<Marca> listarPorMarca(Marca marca) {
+//        String sql =  "SELECT mr.descricao as marca_descricao, m.nome as modelo_nome FROM marca mr "
+//                + "INNER JOIN modelo m ON m.id_marca = mr.id;";
+//        List<Marca> retorno = new ArrayList<>();
+//        try {
+//            PreparedStatement stmt = connection.prepareStatement(sql);
+//            stmt.setString(1, modelo.getMarca().getNome());
+//            ResultSet resultado = stmt.executeQuery();
+//            while (resultado.next()) {
+//                Marca marca = populateVO(resultado);
+//                retorno.add(marca);
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ModeloDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return retorno;
+//    }
 
     public List<Marca> listar() {
         String sql = "SELECT * FROM marca";
@@ -71,7 +89,7 @@ public class MarcaDAO {
             while (resultado.next()) {
                 Marca marca = new Marca();
                 marca.setId(resultado.getInt("id"));
-                marca.setNome(resultado.getString("nome"));
+                marca.setNome(resultado.getString("descricao"));
                 retorno.add(marca);
             }
         } catch (SQLException ex) {
@@ -88,7 +106,7 @@ public class MarcaDAO {
             stmt.setInt(1, marca.getId());
             ResultSet resultado = stmt.executeQuery();
             if (resultado.next()) {
-                marca.setNome(resultado.getString("nome"));
+                marca.setNome(resultado.getString("descricao"));
                 retorno = marca;
             }
         } catch (SQLException ex) {
@@ -96,4 +114,16 @@ public class MarcaDAO {
         }
         return retorno;
     }
+    
+    private Marca populateVO(ResultSet rs) throws SQLException {
+       // Modelo modelo = new Modelo();
+        Marca marca = new Marca();
+        //modelo.setMarca(marca);
+        
+        //modelo.setId(rs.getInt("modelo_id"));
+        //modelo.setNome(rs.getString("modelo_nome"));
+        marca.setId(rs.getInt("marca_id"));
+        marca.setNome(rs.getString("marca_descricao"));
+        return marca;
+    }    
 }

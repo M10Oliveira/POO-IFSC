@@ -30,7 +30,7 @@ public class MainApp extends Application {
         Scene scene = new Scene(root, 600, 400);
         
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../icon/IFSC_logo_vertical.png")));
-        primaryStage.setTitle("Sistema de Vendas do IFSC Florianópolis");
+        primaryStage.setTitle("Sistema de Lavação do IFSC Florianópolis");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();

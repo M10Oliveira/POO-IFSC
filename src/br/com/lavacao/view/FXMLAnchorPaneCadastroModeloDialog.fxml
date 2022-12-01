@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" prefHeight="242.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.lavacao.controller.FXMLAnchorPaneCadastroModeloDialogController">
+   <children>
+      <GridPane layoutX="25.0" layoutY="24.0" prefHeight="170.0" prefWidth="362.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="63.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="278.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label fx:id="labelModeloNome" text="Nome:" GridPane.halignment="RIGHT">
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="tfNome" prefHeight="25.0" prefWidth="274.0" promptText="nome do modelo" GridPane.columnIndex="1" />
+            <Label fx:id="labelModeloMarca" text="Marca:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin>
+            </Label>
+            <ComboBox fx:id="cbMarca" prefHeight="25.0" prefWidth="289.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="labelModeloMotor" text="Motor:" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <TextField fx:id="tfPotencia" prefHeight="25.0" prefWidth="274.0" promptText="potência do motor" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="labelCombustivel" text="Combustivel:" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="labelCategoriaModelo" text="Categoria:" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+            <ChoiceBox fx:id="cbCategoria" prefHeight="10.0" prefWidth="289.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ChoiceBox fx:id="cbCombustivel" prefHeight="26.0" prefWidth="293.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <Group layoutX="240.0" layoutY="165.0" />
+      <Button fx:id="btConfirmar" layoutX="231.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleBtConfirmar" text="Confirmar" />
+      <Button fx:id="btCancelar" layoutX="309.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleBtCancelar" prefHeight="25.0" prefWidth="69.0" text="Cancelar" />
+   </children>
+</AnchorPane>

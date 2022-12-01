@@ -20,22 +20,29 @@ import javafx.scene.layout.AnchorPane;
  */
 public class FXMLVBoxMainAppController implements Initializable {
 
+   @FXML
+    private AnchorPane anchorPane;
+
     @FXML
-    private MenuItem menuItemCadastroCategoria;
+    private MenuItem menuItemCadastroMarca;
+
     @FXML
-    private MenuItem menuItemCadastroProduto;
+    private MenuItem menuItemCadastroModelo;
+
     @FXML
-    private MenuItem menuItemCadastroCliente;
+    private MenuItem menuItemCadastroVeiculo;
+
     @FXML
-    private MenuItem menuItemProcessoVendas;
+    private MenuItem menuItemGraficoVendasPorMes;
+
     @FXML
-    private MenuItem menuItemProcessoEstoque;
+    private MenuItem menuItemProcessoMotor;
+
     @FXML
-    private MenuItem menuItemGraficoVendaPorMes;
+    private MenuItem menuItemProcessoVenda;
+
     @FXML
     private MenuItem menuItemRelatorioEstoque;
-    @FXML
-    private AnchorPane anchorPane;
     /**
      * Initializes the controller class.
      */
@@ -45,8 +52,27 @@ public class FXMLVBoxMainAppController implements Initializable {
     }  
     
     @FXML
-    public void handleMenuItemCadastroCategoria() throws IOException {
-        /*AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLAnchorPaneCadastroCategoria.fxml"));
-        anchorPane.getChildren().setAll(a);*/
+    public void handleMenuItemCadastroMarca() throws IOException {
+        AnchorPane a = (AnchorPane)FXMLLoader.load(getClass().getResource("../view/FXMLAnchorPaneCadastroMarca.fxml"));
+        anchorPane.getChildren().setAll(a);
     }
+    
+    @FXML
+    public void handleMenuItemCadastroVeiculo() throws IOException {
+        AnchorPane a = (AnchorPane)FXMLLoader.load(getClass().getResource("../view/FXMLAnchorPaneCadastroVeiculo.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }    
+    
+    @FXML
+    public void handleMenuItemCadastroModelo() throws IOException {
+        AnchorPane a = (AnchorPane)FXMLLoader.load(getClass().getResource("../view/FXMLAnchorPaneCadastroModelo.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+    
+     @FXML
+    void handleMenuItemCadastroMotor() throws IOException{
+        AnchorPane a = (AnchorPane)FXMLLoader.load(getClass().getResource("../view/FXMLAnchorPaneCadastroMotor.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+    
 }
