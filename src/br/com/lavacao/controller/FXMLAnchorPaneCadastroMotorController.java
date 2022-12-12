@@ -4,11 +4,13 @@
  */
 package br.com.lavacao.controller;
 
+import br.com.lavacao.model.dao.ModeloDAO;
 import br.com.lavacao.model.dao.MotorDAO;
 import br.com.lavacao.model.dao.VeiculoDAO;
 import br.com.lavacao.model.database.Database;
 import br.com.lavacao.model.database.DatabaseFactory;
 import br.com.lavacao.model.domain.Marca;
+import br.com.lavacao.model.domain.Modelo;
 import br.com.lavacao.model.domain.Motor;
 import br.com.lavacao.model.domain.Veiculo;
 import java.io.IOException;
@@ -23,6 +25,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -70,6 +73,7 @@ public class FXMLAnchorPaneCadastroMotorController implements Initializable {
     private final Database database = DatabaseFactory.getDatabase("mysql");
     private final Connection connection = database.conectar();
     private final MotorDAO motorDAO  = new MotorDAO();
+    private final ModeloDAO modeloDAO = new ModeloDAO();
     
     /**
      * Initializes the controller class.
@@ -98,7 +102,25 @@ public class FXMLAnchorPaneCadastroMotorController implements Initializable {
     }
 
     @FXML
-    private void handleBtAlterar(ActionEvent event) {
+    private void handleBtAlterar(ActionEvent event) throws IOException {
+        //Modelo modelo = new Modelo();
+        Motor motor = tableViewMotores.getSelectionModel().getSelectedItem();
+        //Modelo modelo = motor.getModelo();
+        //Modelo modelo1 = modeloDAO.buscar(modelo);
+        //Motor motor = new Motor();
+        if (motor != null) {
+            boolean buttonConfirmarClicked = showFXMLAnchorPaneCadastroMotorDialog(motor);
+            if (buttonConfirmarClicked) {
+                motorDAO.atualizar(motor);
+                carregarTableViewMotores();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Por favor, escolha um modelo na Tabela.");
+            alert.show();
+        }
+     
+        
     }
 
     @FXML

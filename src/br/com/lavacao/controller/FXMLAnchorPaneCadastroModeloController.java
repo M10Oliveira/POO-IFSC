@@ -108,7 +108,7 @@ public class FXMLAnchorPaneCadastroModeloController implements Initializable {
             lbModeloId.setText(Integer.toString(modelo.getId()));
             lbModeloNome.setText(modelo.getNome());
             lbModeloMarca.setText(modelo.getMarca().getNome());
-            lbCategoria.setText(modelo.getCategoria().name());
+            lbCategoria.setText(modelo.getCategoria().toString());
            
         } else {
             lbModeloId.setText("");
@@ -133,6 +133,7 @@ public class FXMLAnchorPaneCadastroModeloController implements Initializable {
     @FXML
     public void handleBtAlterar() throws IOException {
         Modelo modelo = tableView.getSelectionModel().getSelectedItem();
+        modelo = modeloDAO.buscar(modelo);
         if (modelo != null) {
             boolean buttonConfirmarClicked = showFXMLAnchorPaneCadastrosModelosDialog(modelo);
             if (buttonConfirmarClicked) {

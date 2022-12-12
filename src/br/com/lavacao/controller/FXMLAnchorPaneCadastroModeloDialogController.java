@@ -193,12 +193,10 @@ public class FXMLAnchorPaneCadastroModeloDialogController implements Initializab
             tfPotencia.setText(String.valueOf(modelo.getMotor().getPotencia()));
             cbCombustivel.getSelectionModel().select(modelo.getMotor().getCombustivel());
             cbCategoria.getSelectionModel().select(modelo.getCategoria());
+            cbMarca.getSelectionModel().select(modelo.getMarca());
         } 
         else{
-            
-        //tfPotencia.setText("teste");
-        //cbCombustivel.getSelectionModel().select(modelo.getMotor().getCombustivel());
-        cbMarca.getSelectionModel().select(modelo.getMarca());
+            cbMarca.getSelectionModel().select(modelo.getMarca());
         }
     }    
     
@@ -210,8 +208,8 @@ public class FXMLAnchorPaneCadastroModeloDialogController implements Initializab
             modelo.setMarca(
                     cbMarca.getSelectionModel().getSelectedItem());
             modelo.getMotor().setPotencia(Integer.parseInt((tfPotencia.getText())));
-            modelo.getMotor().setCombustivel(cbCombustivel.getValue());
-            //modelo.getMotor().setModelo(modelo);
+            modelo.getMotor().setCombustivel(cbCombustivel.getSelectionModel().getSelectedItem());
+            modelo.setCategoria(cbCategoria.getSelectionModel().getSelectedItem());
             buttonConfirmarClicked = true;
             dialogStage.close();
         }

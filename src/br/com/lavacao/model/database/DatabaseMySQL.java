@@ -10,9 +10,13 @@ public class DatabaseMySQL implements Database {
 
     private Connection connection;
 
+
     @Override
     public Connection conectar() {
+    
+
         try {
+            
             final String DRIVER = "com.mysql.cj.jdbc.Driver";//MySQL 8
             final String URL = "jdbc:mysql://localhost:3306/db_lavacao1?useTimezone=true&serverTimezone=UTC";//MySQL 8
             final String USER = "root";

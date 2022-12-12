@@ -18,10 +18,12 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application {
     
+    
     @Override
     public void start(Stage primaryStage) {
         Parent root = null;
         try {
+          
             root = FXMLLoader.load(getClass().getResource("../view/FXMLVBoxMainApp.fxml"));
         } catch (IOException ex) {
             System.out.println("Não foi possível carregar o formulário");

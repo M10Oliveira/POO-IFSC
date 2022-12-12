@@ -62,23 +62,6 @@ public class MarcaDAO {
             return false;
         }
     }
-//     public List<Marca> listarPorMarca(Marca marca) {
-//        String sql =  "SELECT mr.descricao as marca_descricao, m.nome as modelo_nome FROM marca mr "
-//                + "INNER JOIN modelo m ON m.id_marca = mr.id;";
-//        List<Marca> retorno = new ArrayList<>();
-//        try {
-//            PreparedStatement stmt = connection.prepareStatement(sql);
-//            stmt.setString(1, modelo.getMarca().getNome());
-//            ResultSet resultado = stmt.executeQuery();
-//            while (resultado.next()) {
-//                Marca marca = populateVO(resultado);
-//                retorno.add(marca);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ModeloDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return retorno;
-//    }
 
     public List<Marca> listar() {
         String sql = "SELECT * FROM marca";
@@ -116,12 +99,7 @@ public class MarcaDAO {
     }
     
     private Marca populateVO(ResultSet rs) throws SQLException {
-       // Modelo modelo = new Modelo();
         Marca marca = new Marca();
-        //modelo.setMarca(marca);
-        
-        //modelo.setId(rs.getInt("modelo_id"));
-        //modelo.setNome(rs.getString("modelo_nome"));
         marca.setId(rs.getInt("marca_id"));
         marca.setNome(rs.getString("marca_descricao"));
         return marca;

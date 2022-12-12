@@ -4,13 +4,21 @@
  */
 package br.com.lavacao.controller;
 
+import br.com.lavacao.model.dao.ModeloDAO;
+import br.com.lavacao.model.dao.MotorDAO;
+import br.com.lavacao.model.domain.ECombustivel;
+import br.com.lavacao.model.domain.Modelo;
 import br.com.lavacao.model.domain.Motor;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -20,7 +28,12 @@ import javafx.stage.Stage;
  * @author mpisc
  */
 public class FXMLAnchorPaneCadastroMotorDialogController implements Initializable {
+    
+    @FXML
+    private ChoiceBox<ECombustivel> cbCombustivel;
 
+    @FXML
+    private ChoiceBox<Modelo> cbModelo;
     @FXML
     private Button btCancelar;
 
@@ -33,13 +46,16 @@ public class FXMLAnchorPaneCadastroMotorDialogController implements Initializabl
     private Stage dialogStage;
     private boolean btConfirmarClicked = false;
     private Motor motor;
+    MotorDAO motorDAO = new MotorDAO();
+    ModeloDAO modeloDAO = new ModeloDAO();
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        carregarComboBoxCombust();
+        carregarComboBoxModelos();
     }       
 
     public boolean isBtConfirmarClicked() {
@@ -65,7 +81,9 @@ public class FXMLAnchorPaneCadastroMotorDialogController implements Initializabl
     public void setMotor(Motor motor) {
         this.motor = motor;
         if(motor.getPotencia() != 0){
-            this.tfPotencia.setText(String.valueOf(motor.getPotencia()));
+            tfPotencia.setText(String.valueOf(motor.getPotencia()));
+            cbCombustivel.getSelectionModel().select(motor.getCombustivel());
+            cbModelo.getSelectionModel().select(motor.getModelo());
         }
     }
     
@@ -73,8 +91,7 @@ public class FXMLAnchorPaneCadastroMotorDialogController implements Initializabl
     @FXML
     public void handleBtConfirmar() {
         if (validarEntradaDeDados()) {
-            motor.setPotencia(Integer.parseInt(tfPotencia.getText()));
-
+          
             btConfirmarClicked = true;
             dialogStage.close();
         }
@@ -103,6 +120,24 @@ public class FXMLAnchorPaneCadastroMotorDialogController implements Initializabl
             alert.show();
             return false;
         }
+    }
+    private List<ECombustivel> listaCombust;
+    private ObservableList<ECombustivel> observableListCombust; 
+    public void carregarComboBoxCombust() {
+        listaCombust = motorDAO.listarCombustivel();
+        observableListCombust = 
+                FXCollections.observableArrayList(listaCombust);
+        cbCombustivel.setItems(observableListCombust);
+    }   
+    
+    private List<Modelo> listaModelos;
+    private ObservableList<Modelo> observableListModelos; 
+    
+    public void carregarComboBoxModelos() {
+        listaModelos = modeloDAO.listarTudo();
+        observableListModelos = 
+                FXCollections.observableArrayList(listaModelos);
+        cbModelo.setItems(observableListModelos);
     }
     
 }
